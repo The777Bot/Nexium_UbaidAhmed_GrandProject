@@ -5,7 +5,7 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
-  srcDir: 'src', // 👈 This tells Next.js where your app folder is
+   // 👈 This tells Next.js where your app folder is
 };
 
 module.exports = nextConfig;

@@ -320,14 +320,14 @@ export default function MentalHealthTracker() {
           onClick={() => setShowForm(!showForm)}
           className="btn-primary text-lg px-8 py-3"
         >
-          {showForm ? "Cancel" : "Add Today's Entry"}
+          {showForm ? "Cancel" : "Add Today&apos;s Entry"}
         </Button>
       </div>
 
       {/* Entry Form */}
       {showForm && (
         <Card className="slide-up">
-          <h2 className="text-2xl font-bold mb-6">Today's Mental Health Check-in</h2>
+          <h2 className="text-2xl font-bold mb-6">Today&apos;s Mental Health Check-in</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <div>
