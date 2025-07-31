@@ -275,7 +275,7 @@ export default function MentalHealthTracker() {
       {/* Greeting and Emojis */}
       <div className="text-center fade-in">
         <h1 className="text-4xl font-extrabold text-indigo-700 mb-2 drop-shadow-lg">Welcome Back!</h1>
-        <p className="text-lg text-gray-600 mb-2 italic">"Every day is a fresh start. Track your journey."</p>
+        <p className="text-lg text-gray-600 mb-2 italic">&quot;Every day is a fresh start. Track your journey.&quot;</p>
         <div className="flex justify-center gap-2 mt-2">
           {MOOD_EMOJIS.map((mood, idx) => (
             <span key={idx} className="flex flex-col items-center">
@@ -320,14 +320,14 @@ export default function MentalHealthTracker() {
           onClick={() => setShowForm(!showForm)}
           className="btn-primary text-lg px-8 py-3"
         >
-          {showForm ? "Cancel" : "Add Today's Entry"}
+          {showForm ? "Cancel" : "Add Today&apos;s Entry"}
         </Button>
       </div>
 
       {/* Entry Form */}
       {showForm && (
         <Card className="slide-up">
-          <h2 className="text-2xl font-bold mb-6">Today's Mental Health Check-in</h2>
+          <h2 className="text-2xl font-bold mb-6">Today&apos;s Mental Health Check-in</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <div>
@@ -705,7 +705,7 @@ export default function MentalHealthTracker() {
                        Energy: {entry.energy}/10 | Sleep: {entry.sleep}h | Stress: {entry.stress}/10
                      </p>
                      {entry.journal && (
-                       <p className="text-sm text-gray-700 mt-2 italic">"{entry.journal}"</p>
+                       <p className="text-sm text-gray-700 mt-2 italic">&quot;{entry.journal}&quot;</p>
                      )}
                    </div>
                   <div className="text-right">

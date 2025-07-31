@@ -4,15 +4,16 @@ import { MongoClient } from 'mongodb'
 const uri = process.env.MONGODB_URI!
 const options = {}
 
-let client
-let clientPromise: Promise<MongoClient>
-
-if (!global._mongoClientPromise) {
-  client = new MongoClient(uri, options)
-  global._mongoClientPromise = client.connect()
+declare global {
+  var _mongoClientPromise: Promise<MongoClient>
 }
 
-clientPromise = global._mongoClientPromise
+const client = new MongoClient(uri, options)
+export const clientPromise = global._mongoClientPromise || client.connect()
+
+if (!global._mongoClientPromise) {
+  global._mongoClientPromise = clientPromise
+}
 
 export async function connectToDatabase() {
   const client = await clientPromise
