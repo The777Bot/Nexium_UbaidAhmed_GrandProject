@@ -1,6 +1,6 @@
 // app/api/journal/route.ts
 import { NextRequest, NextResponse } from 'next/server'
-import clientPromise from '@/lib/mongo/mongoClient'
+import { clientPromise } from '@/lib/mongo/mongoClient'
 
 export async function POST(req: NextRequest) {
   try {

@@ -9,7 +9,7 @@ declare global {
 }
 
 const client = new MongoClient(uri, options)
-const clientPromise: Promise<MongoClient> = global._mongoClientPromise || client.connect()
+export const clientPromise: Promise<MongoClient> = global._mongoClientPromise || client.connect()
 
 if (!global._mongoClientPromise) {
   global._mongoClientPromise = clientPromise
