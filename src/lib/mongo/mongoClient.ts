@@ -8,15 +8,12 @@ declare global {
   var _mongoClientPromise: Promise<MongoClient>
 }
 
-let client
-let clientPromise: Promise<MongoClient>
+const client = new MongoClient(uri, options)
+const clientPromise: Promise<MongoClient> = global._mongoClientPromise || client.connect()
 
 if (!global._mongoClientPromise) {
-  client = new MongoClient(uri, options)
-  global._mongoClientPromise = client.connect()
+  global._mongoClientPromise = clientPromise
 }
-
-clientPromise = global._mongoClientPromise
 
 export async function connectToDatabase() {
   const client = await clientPromise
