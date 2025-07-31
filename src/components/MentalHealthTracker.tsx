@@ -24,10 +24,6 @@ import {
   FaCoffee, 
   FaGamepad,
   FaHeart,
-  FaLaptop,
-  FaSun,
-  FaMoon,
-  FaLeaf,
   FaRunning,
   FaSkiing,
   FaBiking,
@@ -39,40 +35,8 @@ import {
   FaHeadphones,
   FaShoppingCart,
   FaHome,
-  FaCar,
-  FaPlane,
-  FaTrain,
-  FaBus,
-  FaBicycle,
   FaDog,
-  FaCat,
-  FaBaby,
-  FaChild,
-  FaUserFriends,
-  FaUserTie,
-  FaUserGraduate,
-  FaUserMd,
-  FaUserNurse,
-  FaUserCog,
-  FaUserCheck,
-  FaUserClock,
-  FaUserEdit,
-  FaUserMinus,
-  FaUserPlus,
-  FaUserSecret,
-  FaUserShield,
-  FaUserSlash,
-  FaUserTag,
-  FaUserTimes,
-  FaUserAstronaut,
-  FaUserNinja,
-  FaUserInjured,
-  FaUserLock,
-  FaHardHat,
-  FaHeadset,
-  FaUserAlt,
-  FaWrench,
-  FaTimes
+  FaUserInjured
 } from "react-icons/fa";
 
 interface MoodEntry {
@@ -98,7 +62,6 @@ interface Activity {
   freshness: number; // 1-10 scale for how fresh/refreshing the activity is
 }
 
-const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#8884D8"];
 const MOOD_EMOJIS = [
   { min: 1, max: 3, icon: <FaFrown className="text-3xl text-blue-400" />, label: "Low" },
   { min: 4, max: 7, icon: <FaMeh className="text-3xl text-yellow-400" />, label: "Medium" },
@@ -795,4 +758,4 @@ export default function MentalHealthTracker() {
       )}
     </div>
   );
-} 
+}
