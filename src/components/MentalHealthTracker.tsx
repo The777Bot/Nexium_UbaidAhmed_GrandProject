@@ -320,7 +320,7 @@ export default function MentalHealthTracker() {
           onClick={() => setShowForm(!showForm)}
           className="btn-primary text-lg px-8 py-3"
         >
-          {showForm ? "Cancel" : "Add Today&apos;s Entry"}
+          {showForm ? "Cancel" : "Add Today's Entry"}
         </Button>
       </div>
 
