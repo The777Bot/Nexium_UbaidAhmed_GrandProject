@@ -4,6 +4,10 @@ import { MongoClient } from 'mongodb'
 const uri = process.env.MONGODB_URI!
 const options = {}
 
+declare global {
+  var _mongoClientPromise: Promise<MongoClient>
+}
+
 let client
 let clientPromise: Promise<MongoClient>
 
