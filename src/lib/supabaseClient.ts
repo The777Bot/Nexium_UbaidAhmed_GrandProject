@@ -17,7 +17,7 @@ export async function getServerSupabaseClient() {
       cookies: {
         getAll: () => cookieStore.getAll().map((cookie) => ({ name: cookie.name, value: cookie.value })),
         setAll: (cookiesToSet: Array<{ name: string; value: string; options: Record<string, unknown> }>) => {
-          cookiesToSet.forEach(({ name, value, options }) => cookieStore.set(name, value, options as any));
+          cookiesToSet.forEach(({ name, value, options }) => cookieStore.set(name, value, options));
         },
       }
     }
