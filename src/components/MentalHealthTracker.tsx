@@ -47,9 +47,8 @@ interface MoodEntry {
   moodType: string;
   energy: number;
   sleep: number;
-  stress: number;
-  journal: string;
-  activities: string[];
+   stress: number;
+   activities: string[];
 }
 
 interface Activity {
@@ -92,9 +91,8 @@ export default function MentalHealthTracker() {
     moodType: "neutral",
     energy: 5,
     sleep: 7,
-    stress: 5,
-    journal: "",
-    activities: [],
+     stress: 5,
+     activities: [],
   });
   const [showForm, setShowForm] = useState(false);
   const [selectedTimeframe, setSelectedTimeframe] = useState("7");
@@ -180,14 +178,13 @@ export default function MentalHealthTracker() {
       moodType: currentEntry.moodType || "neutral",
       energy: currentEntry.energy || 5,
       sleep: currentEntry.sleep || 7,
-      stress: currentEntry.stress || 5,
-      journal: currentEntry.journal || "",
-      activities: currentEntry.activities || [],
+       stress: currentEntry.stress || 5,
+       activities: currentEntry.activities || [],
     };
     const updatedEntries = [...entries, newEntry];
     setEntries(updatedEntries);
     localStorage.setItem("mentalHealthEntries", JSON.stringify(updatedEntries));
-    setCurrentEntry({ mood: 5, moodType: "neutral", energy: 5, sleep: 7, stress: 5, journal: "", activities: [] });
+    setCurrentEntry({ mood: 5, moodType: "neutral", energy: 5, sleep: 7, stress: 5, activities: [] });
     setShowForm(false);
   };
 
@@ -563,21 +560,10 @@ export default function MentalHealthTracker() {
             </div>
           </div>
 
-          <div className="mb-6">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Journal Entry (Optional)
-            </label>
-            <textarea
-              value={currentEntry.journal}
-              onChange={(e) => setCurrentEntry({...currentEntry, journal: e.target.value})}
-              placeholder="How are you feeling today? Any thoughts or reflections..."
-              className="input-field"
-              rows={4}
-            />
-          </div>
+
 
           <div className="text-center">
-            <Button onClick={saveEntry} className="btn-primary">
+             <Button onClick={saveEntry} className="btn-primary">
               Save Entry
             </Button>
           </div>
@@ -704,11 +690,9 @@ export default function MentalHealthTracker() {
                      <p className="text-sm text-gray-600">
                        Energy: {entry.energy}/10 | Sleep: {entry.sleep}h | Stress: {entry.stress}/10
                      </p>
-                     {entry.journal && (
-                       <p className="text-sm text-gray-700 mt-2 italic">&quot;{entry.journal}&quot;</p>
-                     )}
+                     
                    </div>
-                  <div className="text-right">
+                    <div className="text-right">
                     <div className="flex gap-1 flex-wrap justify-end">
                       {entry.activities.map(activityId => {
                         const activity = activities.find(a => a.id === activityId);
