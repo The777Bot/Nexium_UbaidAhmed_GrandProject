@@ -152,6 +152,10 @@ const categories = [
 
 export default function MentalHealthTracker() {
   const [entries, setEntries] = useState<MoodEntry[]>([]);
+  // Journal AI
+  const [journalPrompt, setJournalPrompt] = useState("");
+  const [journalReply, setJournalReply] = useState("");
+  const [journalLoading, setJournalLoading] = useState(false);
   const [currentEntry, setCurrentEntry] = useState<Partial<MoodEntry>>({
     mood: 5,
     moodType: "neutral",
@@ -374,7 +378,7 @@ export default function MentalHealthTracker() {
 
       {/* Greeting and Emojis */}
       <div className="text-center fade-in">
-        <h1 className="text-4xl font-extrabold mb-2 drop-shadow-lg">Welcome Back!</h1>
+        <h1 className="text-4xl font-extrabold mb-2 drop-shadow-lg">MindMonitor</h1>
         <p className="text-lg text-gray-600 mb-2 italic">&quot;Every day is a fresh start. Track your journey.&quot;</p>
         <div className="flex justify-center gap-2 mt-2">
           {MOOD_EMOJIS.map((mood, idx) => (
@@ -410,6 +414,7 @@ export default function MentalHealthTracker() {
         </Card>
       </div>
 
+
       {/* Add Entry Button */}
       <div className="text-center">
         <Button
@@ -421,6 +426,52 @@ export default function MentalHealthTracker() {
           {showForm ? "Cancel" : editingEntry ? "Editing Entry..." : "Add Today's Entry"}
         </Button>
       </div>
+
+      {/* Journal AI Prompt */}
+      <Card className="max-w-xl mx-auto my-8 p-6">
+        <h2 className="text-xl font-bold mb-2">Journal AI</h2>
+        <p className="text-gray-600 mb-4">How do you feel today? Write a short message and get an AI-powered response.</p>
+        <form
+          onSubmit={async (e) => {
+            e.preventDefault();
+            setJournalLoading(true);
+            setJournalReply("");
+            try {
+              // Replace this URL with your actual n8n webhook endpoint
+              const n8nUrl = "https://your-n8n-instance.com/webhook/ai-journal";
+              const res = await fetch(n8nUrl, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ prompt: journalPrompt })
+              });
+              const data = await res.json();
+              setJournalReply(data.reply || "No reply received.");
+            } catch (err) {
+              setJournalReply("Error connecting to AI workflow.");
+            } finally {
+              setJournalLoading(false);
+            }
+          }}
+        >
+          <textarea
+            className="w-full border rounded p-2 mb-2"
+            rows={3}
+            placeholder="Type how you feel..."
+            value={journalPrompt}
+            onChange={e => setJournalPrompt(e.target.value)}
+            required
+          />
+          <Button type="submit" className="btn-primary" disabled={journalLoading || !journalPrompt.trim()}>
+            {journalLoading ? "Thinking..." : "Get AI Recommendation"}
+          </Button>
+        </form>
+        {journalReply && (
+          <div className="mt-4 p-3 bg-blue-50 rounded border border-blue-200 text-blue-900">
+            <strong>AI Reply:</strong>
+            <div className="mt-1 whitespace-pre-line">{journalReply}</div>
+          </div>
+        )}
+      </Card>
 
       {/* Entry Form */}
       {showForm && (
