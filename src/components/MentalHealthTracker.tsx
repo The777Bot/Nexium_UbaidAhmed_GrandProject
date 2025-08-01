@@ -367,14 +367,14 @@ export default function MentalHealthTracker() {
     <div className="space-y-8">
       {/* Success Message */}
       {showSuccessMessage && (
-        <div className="fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 animate-fade-in">
+        <div className="fixed top-4 right-4 success-message z-50">
           Entry saved successfully! 🎉
         </div>
       )}
 
       {/* Greeting and Emojis */}
       <div className="text-center fade-in">
-        <h1 className="text-4xl font-extrabold text-indigo-700 mb-2 drop-shadow-lg">Welcome Back!</h1>
+        <h1 className="text-4xl font-extrabold mb-2 drop-shadow-lg">Welcome Back!</h1>
         <p className="text-lg text-gray-600 mb-2 italic">&quot;Every day is a fresh start. Track your journey.&quot;</p>
         <div className="flex justify-center gap-2 mt-2">
           {MOOD_EMOJIS.map((mood, idx) => (
@@ -388,21 +388,21 @@ export default function MentalHealthTracker() {
 
       {/* Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 slide-up">
-        <Card className="text-center p-6 hover:shadow-lg transition-shadow">
+        <Card className="text-center p-6 hover-lift">
           <h3 className="text-lg font-semibold text-gray-700">Total Entries</h3>
           <p className="text-3xl font-bold text-blue-600">{entries.length}</p>
         </Card>
-        <Card className="text-center p-6 hover:shadow-lg transition-shadow">
+        <Card className="text-center p-6 hover-lift">
           <h3 className="text-lg font-semibold text-gray-700">Average Mood</h3>
           <p className="text-3xl font-bold text-green-600 flex items-center justify-center gap-2">
             {averageMood}/10 {getMoodEmoji(Number(averageMood))}
           </p>
         </Card>
-        <Card className="text-center p-6 hover:shadow-lg transition-shadow">
+        <Card className="text-center p-6 hover-lift">
           <h3 className="text-lg font-semibold text-gray-700">Current Streak</h3>
           <p className="text-3xl font-bold text-purple-600">{currentStreak}</p>
         </Card>
-        <Card className="text-center p-6 hover:shadow-lg transition-shadow">
+        <Card className="text-center p-6 hover-lift">
           <h3 className="text-lg font-semibold text-gray-700">Days Tracked</h3>
           <p className="text-3xl font-bold text-orange-600">
             {new Set(entries.map((e) => e.date)).size}
@@ -693,7 +693,7 @@ export default function MentalHealthTracker() {
       {/* Charts Section */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Mood Trend Chart */}
-        <Card className="hover:shadow-lg transition-shadow">
+        <Card className="hover-lift">
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-xl font-semibold">Mood Trend</h3>
             <Select value={selectedTimeframe} onValueChange={setSelectedTimeframe}>
@@ -709,15 +709,15 @@ export default function MentalHealthTracker() {
           </div>
           <ResponsiveContainer width="100%" height={300}>
             <LineChart data={moodTrend}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="date" />
-              <YAxis domain={[0, 10]} />
+              <CartesianGrid strokeDasharray="3 3" stroke="var(--border-primary)" />
+              <XAxis dataKey="date" stroke="var(--text-secondary)" />
+              <YAxis domain={[0, 10]} stroke="var(--text-secondary)" />
               <Tooltip 
                 content={({ active, payload, label }) => {
                   if (active && payload && payload.length) {
                     const data = payload[0].payload;
                     return (
-                      <div className="bg-white p-3 border border-gray-200 rounded-lg shadow-lg">
+                      <div className="card p-3">
                         <p className="font-semibold">{label}</p>
                         <p className="text-sm text-gray-600">Time: {data.time}</p>
                         <p className="text-sm">Mood: {data.mood}/10</p>
@@ -730,15 +730,15 @@ export default function MentalHealthTracker() {
                   return null;
                 }}
               />
-              <Line type="monotone" dataKey="mood" stroke="#8884d8" strokeWidth={2} />
-              <Line type="monotone" dataKey="energy" stroke="#82ca9d" strokeWidth={2} />
-              <Line type="monotone" dataKey="stress" stroke="#ff7300" strokeWidth={2} />
+              <Line type="monotone" dataKey="mood" stroke="var(--accent-primary)" strokeWidth={3} />
+              <Line type="monotone" dataKey="energy" stroke="var(--accent-secondary)" strokeWidth={3} />
+              <Line type="monotone" dataKey="stress" stroke="var(--accent-tertiary)" strokeWidth={3} />
             </LineChart>
           </ResponsiveContainer>
         </Card>
 
         {/* Mood Distribution */}
-        <Card className="hover:shadow-lg transition-shadow">
+        <Card className="hover-lift">
           <h3 className="text-xl font-semibold mb-4">Mood Distribution</h3>
           <ResponsiveContainer width="100%" height={300}>
             <PieChart>
@@ -749,7 +749,7 @@ export default function MentalHealthTracker() {
                 labelLine={false}
                 label={({ name, percentage }) => `${name} (${percentage}%)`}
                 outerRadius={80}
-                fill="#8884d8"
+                fill="var(--accent-primary)"
                 dataKey="value"
               >
                 {moodDistribution.map((entry, index) => (
@@ -761,7 +761,7 @@ export default function MentalHealthTracker() {
                   if (active && payload && payload.length) {
                     const data = payload[0].payload;
                     return (
-                      <div className="bg-white p-3 border border-gray-200 rounded-lg shadow-lg">
+                      <div className="card p-3">
                         <p className="font-semibold">{data.name}</p>
                         <p className="text-sm text-gray-600">{data.description}</p>
                         <p className="text-sm">Count: {data.value} entries</p>
