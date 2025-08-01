@@ -437,8 +437,8 @@ export default function MentalHealthTracker() {
             setJournalLoading(true);
             setJournalReply("");
             try {
-              // Replace this URL with your actual n8n webhook endpoint
-              const n8nUrl = "https://your-n8n-instance.com/webhook/ai-journal";
+              // Updated to use your actual n8n webhook endpoint
+              const n8nUrl = "https://n8n-production-1c19.up.railway.app/webhook-test/ai-journal";
               const res = await fetch(n8nUrl, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
