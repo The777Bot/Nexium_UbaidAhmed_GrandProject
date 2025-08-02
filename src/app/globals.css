@@ -708,6 +708,22 @@ h3 {
 
 .footer-content {
   max-width: 1200px;
+.main-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+@media (min-width: 640px) {
+  .main-content {
+    padding: 2rem 1.5rem;
+  }
+}
+@media (min-width: 1024px) {
+  .main-content {
+    padding: 3rem 2rem;
+  }
+}
   margin: 0 auto;
   padding: 1.5rem 1rem;
   text-align: center;
@@ -716,6 +732,22 @@ h3 {
 /* Activity Tags */
 .activity-tag {
   padding: 0.25rem 0.5rem;
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+  text-align: center;
+}
+@media (min-width: 640px) {
+  .footer-content {
+    padding: 1.5rem 1.5rem;
+  }
+}
+@media (min-width: 1024px) {
+  .footer-content {
+    padding: 2rem 2rem;
+  }
+}
   border-radius: 9999px;
   font-size: 0.75rem;
   font-weight: 500;
@@ -730,12 +762,41 @@ h3 {
 }
 
 .activity-negative {
+.card {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1.5rem;
+}
+@media (min-width: 640px) {
+  .card {
+    max-width: 48%;
+    margin-bottom: 2rem;
+  }
+}
+@media (min-width: 1024px) {
+  .card {
+    max-width: 32%;
+    margin-bottom: 2.5rem;
+  }
+}
   background: rgba(239, 68, 68, 0.1);
   color: #ef4444;
   border-color: rgba(239, 68, 68, 0.3);
 }
 
 .activity-neutral {
+@media (min-width: 640px) {
+  h1, .h1 { font-size: 2.5rem; }
+  h2, .h2 { font-size: 2rem; }
+  h3, .h3 { font-size: 1.5rem; }
+  p, .p { font-size: 1.125rem; }
+}
+@media (min-width: 1024px) {
+  h1, .h1 { font-size: 3rem; }
+  h2, .h2 { font-size: 2.5rem; }
+  h3, .h3 { font-size: 2rem; }
+  p, .p { font-size: 1.25rem; }
+}
   background: var(--glass-bg);
   color: var(--text-secondary);
   border-color: var(--border-primary);
