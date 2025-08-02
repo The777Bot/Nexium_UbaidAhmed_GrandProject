@@ -1,7 +1,39 @@
+// To enable the shiny 'built by Ubaid Ahmed' tag effect, add the following CSS to your globals.css:
+//
+// .built-by-ubaid-tag {
+//   transition: box-shadow 0.3s, filter 0.3s;
+//   cursor: pointer;
+//   box-shadow: 0 2px 12px 0 rgba(80,0,180,0.10);
+// }
+// .built-by-ubaid-tag:hover {
+//   box-shadow: 0 4px 24px 0 rgba(80,0,180,0.25), 0 0 0 4px #a78bfa55;
+//   filter: brightness(1.15) saturate(1.2);
+// }
+// @keyframes gradient-move {
+//   0% { background-position: 0% 50%; }
+//   50% { background-position: 100% 50%; }
+//   100% { background-position: 0% 50%; }
+// }
+// .animate-gradient-move {
+//   background-size: 200% 200%;
+//   animation: gradient-move 3s linear infinite;
+// }
+// .shine-effect {
+//   background: linear-gradient(120deg, transparent 0%, #fff8 40%, #fff 50%, #fff8 60%, transparent 100%);
+//   opacity: 0.7;
+//   transform: translateX(-100%);
+//   animation: shine-move 2.2s cubic-bezier(.4,0,.2,1) infinite;
+// }
+// @keyframes shine-move {
+//   0% { transform: translateX(-100%); }
+//   60% { transform: translateX(120%); }
+//   100% { transform: translateX(120%); }
+// }
 "use client";
 
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { Card } from "./ui/card";
+import HoverCard from "./HoverCard";
 import { Button } from "./ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
 import { Alert, AlertDescription } from "./ui/alert";
@@ -139,7 +171,7 @@ const activities: Activity[] = [
 ];
 
 const categories = [
-  { id: "all", name: "All Activities", color: "bg-gray-100 text-gray-700" },
+  { id: "all", name: "All Activities", color: "bg-gray-100 text-black" },
   { id: "physical", name: "Physical", color: "bg-green-100 text-green-700" },
   { id: "mental", name: "Mental Wellness", color: "bg-blue-100 text-blue-700" },
   { id: "social", name: "Social", color: "bg-purple-100 text-purple-700" },
@@ -378,15 +410,27 @@ export default function MentalHealthTracker() {
 
       {/* Greeting and Emojis */}
       <div className="text-center fade-in">
-        <h1 className="text-4xl font-extrabold mb-2 drop-shadow-lg">MindMonitor</h1>
-        <p className="text-lg text-gray-600 mb-2 italic">&quot;Every day is a fresh start. Track your journey.&quot;</p>
-        <div className="flex justify-center gap-2 mt-2">
-          {MOOD_EMOJIS.map((mood, idx) => (
-            <span key={idx} className="flex flex-col items-center">
-              {mood.icon}
-              <span className="text-xs text-gray-500">{mood.label}</span>
+        <div className="flex flex-col items-center gap-1">
+          <div className="flex items-center justify-center gap-3">
+            <h1 className="text-4xl font-extrabold mb-2 drop-shadow-lg">MindMonitor</h1>
+            <span
+              className="ml-2 px-3 py-1 rounded-full text-white text-xs font-semibold shadow-md border border-white/40 relative overflow-hidden built-by-ubaid-tag"
+              style={{ letterSpacing: '0.05em' }}
+            >
+              <span className="relative z-10">built by Ubaid Ahmed</span>
+              <span className="absolute inset-0 z-0 bg-gradient-to-r from-blue-400 via-fuchsia-500 to-purple-500 animate-gradient-move opacity-80" />
+              <span className="absolute left-0 top-0 w-full h-full pointer-events-none shine-effect" />
             </span>
-          ))}
+          </div>
+          <p className="text-lg text-gray-600 mb-2 italic">&quot;Every day is a fresh start. Track your journey.&quot;</p>
+          <div className="flex justify-center gap-2 mt-2">
+            {MOOD_EMOJIS.map((mood, idx) => (
+              <span key={idx} className="flex flex-col items-center">
+                {mood.icon}
+                <span className="text-xs text-gray-500">{mood.label}</span>
+              </span>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -650,7 +694,7 @@ export default function MentalHealthTracker() {
             </div>
 
             {/* Activities Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {filteredActivities.map(activity => {
                 const isSelected = currentEntry.activities?.includes(activity.id);
                 const colors = getActivityColor(activity.freshness);
@@ -658,44 +702,59 @@ export default function MentalHealthTracker() {
                   <button
                     key={activity.id}
                     onClick={() => toggleActivity(activity.id)}
-                    className={`group relative p-4 rounded-xl border-2 transition-all duration-200 hover:scale-105 ${
-                      isSelected ? 'shadow-lg' : 'hover:shadow-md'
+                    className={`group relative w-full h-full flex flex-col items-center justify-center rounded-3xl border-2 transition-all duration-200 focus:outline-none ${
+                      isSelected ? 'shadow-xl ring-2 ring-fuchsia-400' : 'hover:shadow-lg'
                     }`}
                     style={{
-                      backgroundColor: isSelected ? colors.bg : 'white',
+                      minHeight: 160,
+                      minWidth: 0,
+                      background: isSelected
+                        ? 'linear-gradient(43deg, rgb(65, 88, 208) 0%, rgb(200, 80, 192) 46%, rgb(255, 204, 182) 100%)'
+                        : 'rgba(255,255,255,0.15)',
                       borderColor: isSelected ? colors.border : '#e5e7eb',
+                      color: isSelected ? colors.text : '#374151',
+                      boxShadow: isSelected
+                        ? '0 8px 32px 0 rgba(31, 38, 135, 0.37), 0 0 0 4px #a78bfa55'
+                        : '0 4px 24px 0 rgba(80,0,180,0.10)',
+                      backdropFilter: 'blur(16px)',
+                      WebkitBackdropFilter: 'blur(16px)',
+                      width: '100%',
+                      height: '100%',
+                      padding: '2rem 1.5rem',
+                      position: 'relative',
+                      zIndex: 2,
                     }}
                     title={`${activity.description} (Freshness: ${activity.freshness}/10)`}
+                    tabIndex={0}
+                    aria-pressed={isSelected}
+                    type="button"
                   >
                     {/* Selection Indicator */}
                     {isSelected && (
-                      <div 
-                        className="absolute -top-1 -right-1 w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold"
+                      <div
+                        className="absolute -top-2 -right-2 w-7 h-7 rounded-full flex items-center justify-center text-white text-base font-bold shadow-lg"
                         style={{ backgroundColor: colors.border }}
                       >
                         ✓
                       </div>
                     )}
-
                     {/* Activity Icon */}
-                    <div 
-                      className="text-2xl mb-2 transition-colors"
+                    <div
+                      className="text-4xl mb-2 drop-shadow-lg"
                       style={{ color: isSelected ? colors.text : '#6b7280' }}
                     >
                       {activity.icon}
                     </div>
-
                     {/* Activity Name */}
-                    <div 
-                      className="text-sm font-medium transition-colors"
+                    <div
+                      className="text-base font-semibold tracking-wide text-center"
                       style={{ color: isSelected ? colors.text : '#374151' }}
                     >
                       {activity.name}
                     </div>
-
                     {/* Freshness Indicator */}
-                    <div className="absolute bottom-1 right-1 flex items-center gap-1">
-                      <div 
+                    <div className="absolute bottom-2 right-2 flex items-center gap-1">
+                      <div
                         className="w-2 h-2 rounded-full"
                         style={{ backgroundColor: colors.border }}
                       />
@@ -925,6 +984,17 @@ export default function MentalHealthTracker() {
           </div>
         </Card>
       )}
+      {/* Footer with branding */}
+      <footer className="mt-12 text-center py-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl shadow-inner border-t border-blue-100/40">
+        <span className="text-sm text-gray-500">Made with ❤️ | <span
+          className="px-2 py-1 rounded-full text-white text-xs font-semibold shadow-md border border-white/40 relative overflow-hidden built-by-ubaid-tag"
+          style={{ letterSpacing: '0.05em' }}
+        >
+          <span className="relative z-10"> built by Ubaid Ahmed </span>
+          <span className="absolute inset-0 z-0 bg-gradient-to-r from-blue-400 via-fuchsia-500 to-purple-500 animate-gradient-move opacity-80" />
+          <span className="absolute left-0 top-0 w-full h-full pointer-events-none shine-effect" />
+        </span></span>
+      </footer>
     </div>
   );
 }
