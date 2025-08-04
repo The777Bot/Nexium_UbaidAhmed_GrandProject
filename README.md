@@ -69,7 +69,7 @@ You can deploy this Next.js app on the following platforms:
 Seamless integration with Next.js and supports ISR, SSR, and static exports.
 
 🔗 **Live Demo**: [nexium.vercel.app](https://nexium-ubaid-ahmed-grand-project-gpq51a8zp.vercel.app/)  
-![Vercel Live Preview](https://nexium-ubaid-ahmed-grand-project-gpq51a8zp.vercel.app/)
+
 
 ---
 
@@ -77,7 +77,7 @@ Seamless integration with Next.js and supports ISR, SSR, and static exports.
 Fully supports Next.js SSR and static export via `next export`.
 
 🔗 **Live Demo**: [mindmonitor.netlify.app](https://mindmonitor.netlify.app/)  
-![Netlify Live Preview](https://mindmonitor.netlify.app/)
+
 
 📘 See [Netlify Next.js docs](https://docs.netlify.com/frameworks/nextjs/overview/) for setup instructions.
 
