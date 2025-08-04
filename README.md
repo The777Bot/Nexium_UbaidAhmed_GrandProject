@@ -61,17 +61,29 @@ You can start editing the main page by modifying `src/app/page.tsx`. The page au
  ![n8n Workflow Diagram](./public/n8nworkflow.png)
 
 
-## Deployment
+## 🚀 Deployment
 
-You can deploy this Next.js app on:
+You can deploy this Next.js app on the following platforms:
 
-- [**Vercel**](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) – seamless integration with Next.js.
-![view live here](https://nexium-ubaid-ahmed-grand-project-gpq51a8zp.vercel.app/)
-- [**Netlify**](https://www.netlify.com/) – supports Next.js SSR and static export.  
-  See [Netlify Next.js docs](https://docs.netlify.com/frameworks/nextjs/overview/) for setup.
- ![view live here](https://mindmonitor.netlify.app/)
+### 🔹 [Vercel](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme)
+Seamless integration with Next.js and supports ISR, SSR, and static exports.
 
-Check out the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+🔗 **Live Demo**: [nexium.vercel.app](https://nexium-ubaid-ahmed-grand-project-gpq51a8zp.vercel.app/)  
+![Vercel Live Preview](https://nexium-ubaid-ahmed-grand-project-gpq51a8zp.vercel.app/)
+
+---
+
+### 🔹 [Netlify](https://www.netlify.com/)
+Fully supports Next.js SSR and static export via `next export`.
+
+🔗 **Live Demo**: [mindmonitor.netlify.app](https://mindmonitor.netlify.app/)  
+![Netlify Live Preview](https://mindmonitor.netlify.app/)
+
+📘 See [Netlify Next.js docs](https://docs.netlify.com/frameworks/nextjs/overview/) for setup instructions.
+
+---
+
+📚 Also check out the [official Next.js deployment guide](https://nextjs.org/docs/app/building-your-application/deploying) for more options.
 
 ## Environment Variables
 
