@@ -58,6 +58,9 @@ You can start editing the main page by modifying `src/app/page.tsx`. The page au
 - **MongoDB**: Showcase client setup for scalable data storage (see `src/lib/mongo/mongoClient.ts`).
 - **n8n AI Automation**: AI-powered journaling and automation via webhook integration.
 
+ ![n8n Workflow Diagram](./public/n8nworkflow.png)
+
+
 ## Deployment
 
 You can deploy this Next.js app on:
