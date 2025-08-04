@@ -66,8 +66,10 @@ You can start editing the main page by modifying `src/app/page.tsx`. The page au
 You can deploy this Next.js app on:
 
 - [**Vercel**](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) – seamless integration with Next.js.
+![view live here](https://nexium-ubaid-ahmed-grand-project-gpq51a8zp.vercel.app/)
 - [**Netlify**](https://www.netlify.com/) – supports Next.js SSR and static export.  
   See [Netlify Next.js docs](https://docs.netlify.com/frameworks/nextjs/overview/) for setup.
+ ![view live here](https://mindmonitor.netlify.app/)
 
 Check out the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
