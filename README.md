@@ -1,8 +1,34 @@
+# MindMonitor – Mental Health Tracker
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+## Project Overview
+
+**MindMonitor** is a modern mental health tracker that helps you log your mood, activities, and wellness metrics. It provides analytics, streaks, and AI-powered journaling to support your emotional well-being.
+
+### Key Technologies
+
+- **Next.js** for frontend and app routing
+- **Supabase** for authentication and real-time database (showcase-ready)
+- **MongoDB** for scalable data storage (showcase-ready)
+- **n8n** for AI automation and journaling via webhook
+- **Tailwind CSS** for styling and responsive design
 
 ## Getting Started
 
-First, run the development server:
+First, install dependencies:
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
@@ -16,21 +42,36 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+You can start editing the main page by modifying `src/app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project Structure
 
-## Learn More
+- `src/app/` – Next.js app directory (pages, layout, global styles)
+- `src/components/` – React components (including `MentalHealthTracker`)
+- `src/lib/` – Integration files for Supabase and MongoDB (showcase only)
+- `public/` – Static assets
+- `src/app/globals.css` – Global styles (Tailwind + custom CSS)
 
-To learn more about Next.js, take a look at the following resources:
+## Integrations
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Supabase**: Ready-to-use client setup for authentication and real-time database (see `src/lib/supabaseClient.ts`).
+- **MongoDB**: Showcase client setup for scalable data storage (see `src/lib/mongo/mongoClient.ts`).
+- **n8n AI Automation**: AI-powered journaling and automation via webhook integration.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deployment
 
-## Deploy on Vercel
+You can deploy this Next.js app on:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- [**Vercel**](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) – seamless integration with Next.js.
+- [**Netlify**](https://www.netlify.com/) – supports Next.js SSR and static export.  
+  See [Netlify Next.js docs](https://docs.netlify.com/frameworks/nextjs/overview/) for setup.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Check out the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Environment Variables
+
+Create a `.env.local` file for any environment-specific variables (see `.gitignore` for details).
+
+## Contributing
+
+Pull requests are welcome! For major
