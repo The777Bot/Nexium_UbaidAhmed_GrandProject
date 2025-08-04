@@ -403,43 +403,176 @@ h3 {
   background: var(--glass-bg-hover);
 }
 
+
+/* Enhanced Futuristic Slider Styles */
 .input-range {
   width: 100%;
-  height: 8px;
-  background: var(--bg-tertiary);
-  border-radius: 0.5rem;
+  height: 10px;
+  background: linear-gradient(90deg, var(--bg-glass) 0%, var(--bg-tertiary) 100%);
+  border-radius: 1rem;
   outline: none;
   -webkit-appearance: none;
+  appearance: none;
   position: relative;
+  box-shadow: 0 2px 12px 0 rgba(99,102,241,0.08);
+  transition: background 0.3s;
 }
 
-.input-range::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 50%;
+.input-range:focus {
+  background: linear-gradient(90deg, var(--gradient-primary) 0%, var(--bg-tertiary) 100%);
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.13);
+}
+
+/* Track fill for Chrome/Safari */
+.input-range::-webkit-slider-runnable-track {
+  height: 10px;
+  background: linear-gradient(90deg, var(--gradient-primary) 0%, var(--bg-tertiary) 100%);
+  border-radius: 1rem;
+  box-shadow: 0 1px 6px 0 rgba(99,102,241,0.10);
+}
+
+/* Track fill for Firefox */
+.input-range::-moz-range-track {
+  height: 10px;
+  background: linear-gradient(90deg, var(--gradient-primary) 0%, var(--bg-tertiary) 100%);
+  border-radius: 1rem;
+  box-shadow: 0 1px 6px 0 rgba(99,102,241,0.10);
+}
+
+/* Track fill for IE/Edge */
+.input-range::-ms-fill-lower {
   background: var(--gradient-primary);
-  border-radius: 0.5rem;
-  transition: width 0.3s ease;
+  border-radius: 1rem;
+}
+.input-range::-ms-fill-upper {
+  background: var(--bg-tertiary);
+  border-radius: 1rem;
 }
 
+/* Thumb styles */
 .input-range::-webkit-slider-thumb {
   -webkit-appearance: none;
-  height: 24px;
-  width: 24px;
+  appearance: none;
+  height: 28px;
+  width: 28px;
   border-radius: 50%;
   background: var(--gradient-primary);
+  box-shadow: 0 2px 8px 0 rgba(99,102,241,0.18), 0 0 0 4px rgba(99,102,241,0.10);
+  border: 2.5px solid #fff;
   cursor: pointer;
-  box-shadow: var(--shadow-primary);
-  border: 2px solid white;
-  transition: all 0.3s ease;
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  z-index: 2;
+}
+.input-range:focus::-webkit-slider-thumb {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px rgba(99,102,241,0.18);
+}
+.input-range::-webkit-slider-thumb:hover {
+  transform: scale(1.18);
+  box-shadow: 0 0 0 8px rgba(99,102,241,0.22), 0 2px 12px 0 rgba(99,102,241,0.22);
 }
 
-.input-range::-webkit-slider-thumb:hover {
-  transform: scale(1.2);
-  box-shadow: var(--shadow-glow);
+/* Thumb for Firefox */
+.input-range::-moz-range-thumb {
+  height: 28px;
+  width: 28px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  box-shadow: 0 2px 8px 0 rgba(99,102,241,0.18), 0 0 0 4px rgba(99,102,241,0.10);
+  border: 2.5px solid #fff;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  z-index: 2;
+}
+.input-range:focus::-moz-range-thumb {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px rgba(99,102,241,0.18);
+}
+.input-range::-moz-range-thumb:hover {
+  transform: scale(1.18);
+  box-shadow: 0 0 0 8px rgba(99,102,241,0.22), 0 2px 12px 0 rgba(99,102,241,0.22);
+}
+
+/* Thumb for IE/Edge */
+.input-range::-ms-thumb {
+  height: 28px;
+  width: 28px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  box-shadow: 0 2px 8px 0 rgba(99,102,241,0.18), 0 0 0 4px rgba(99,102,241,0.10);
+  border: 2.5px solid #fff;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  z-index: 2;
+}
+.input-range:focus::-ms-thumb {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px rgba(99,102,241,0.18);
+}
+.input-range::-ms-thumb:hover {
+  transform: scale(1.18);
+  box-shadow: 0 0 0 8px rgba(99,102,241,0.22), 0 2px 12px 0 rgba(99,102,241,0.22);
+}
+
+/* Remove default outline for all browsers */
+.input-range::-webkit-slider-thumb:focus {
+  outline: none;
+}
+.input-range::-moz-focus-outer {
+  border: 0;
+}
+
+/* Hide the outline for IE/Edge */
+.input-range:focus::-ms-fill-lower {
+  background: var(--gradient-primary);
+}
+.input-range:focus::-ms-fill-upper {
+  background: var(--bg-tertiary);
+}
+
+/* Value bubble (optional, for JS/React to position above thumb) */
+.slider-value-bubble {
+  position: absolute;
+  top: -2.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--glass-bg);
+  color: var(--text-primary);
+  padding: 0.35rem 0.85rem;
+  border-radius: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  box-shadow: 0 2px 8px 0 rgba(99,102,241,0.10);
+  border: 1.5px solid var(--glass-border);
+  pointer-events: none;
+  z-index: 10;
+  transition: background 0.2s, color 0.2s;
+}
+
+/* Remove default styles for range input in Firefox */
+.input-range::-moz-focus-outer {
+  border: 0;
+}
+.input-range::-ms-tooltip {
+  display: none;
+}
+
+/* Responsive tweaks for slider */
+@media (max-width: 600px) {
+  .input-range {
+    height: 8px;
+  }
+  .slider-value-bubble {
+    font-size: 0.85rem;
+    padding: 0.25rem 0.65rem;
+    top: -2rem;
+  }
 }
 
 /* Text Utilities */
